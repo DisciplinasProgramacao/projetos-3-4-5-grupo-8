@@ -13,17 +13,19 @@ public class Veiculo implements IVeiculo{
 	
 	public void cadastraVeiculo(String tipo , String placa) throws Exception {
 		if(tipo.equals("Carro")){
-			Carro novocarro = new Carro();
+			Carro novoCarro = new Carro(placa);
 			
 		}
 		else if(tipo.equals("Caminhao")) {
+			Caminhao novoCaminhao = new Caminhao(placa);
 			
 		}
 		else if(tipo.equals("Furgao")) {
+			Furgao novoFurgao = new Furgao(placa);
 			
 		}
 		else if(tipo.equals("Van")) {
-			
+			Van novaVan = new Van(placa)
 		}
 		else {
 			throw new Exception("Tipo inválido. Tente novamente");
@@ -37,5 +39,9 @@ public class Veiculo implements IVeiculo{
 	
 	public String gerarRelatorio() {
 		
+	}
+	
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 }

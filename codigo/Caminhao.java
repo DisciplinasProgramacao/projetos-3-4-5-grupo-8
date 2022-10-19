@@ -8,6 +8,12 @@ public class Caminhao extends Veiculo{
 	public static final double ALINHAMENTO = 1000;
 	public static final double VISTORIA = 1000;
 	
+	public Caminhao(String placa){
+		setPlaca(placa);
+		id = id++;
+		listaCaminhao.add(this);
+	}
+	
 	public double calcularOutrosCustos() {
 		
 	}
