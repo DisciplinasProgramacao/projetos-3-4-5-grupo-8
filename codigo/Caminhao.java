@@ -3,14 +3,13 @@ import java.util.ArrayList;
 public class Caminhao extends Veiculo {
 	public static final double TAXA_SEGURO = 0.02;
 	public static final double TAXA_IPVA = 0.01;
-	public static final double SEGURO_ADICIONAL = 300;
-	public static final double ALINHAMENTO = 1000;
-	public static final double VISTORIA = 1000;
+	public static final double SEGURO_ADICIONAL = 2000;
 	public static final double KMMEDIOPORLITRO = 10;
+	public static final int CAPACIDADE_TANQUE = 250;
 
 	public Caminhao(String placa, double capacidadeTanque, double seguro, double custosAdicionais,
 			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
-		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario, valorDeVenda);
+		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario);
 	}
 	
 	@Override
@@ -39,7 +38,7 @@ public class Caminhao extends Veiculo {
 
 	@Override
 	public double calcularLimiteDiario() {
-		double limiteDiario = this.capacidadeTanque * Caminhao.KMMEDIOPORLITRO;
+		double limiteDiario = Caminhao.CAPACIDADE_TANQUE * Caminhao.KMMEDIOPORLITRO;
 		return limiteDiario;
 	}
 
@@ -50,7 +49,7 @@ public class Caminhao extends Veiculo {
 
 	@Override
 	public double calcularSeguro() {
-		return this.valorDeVenda * Caminhao.TAXA_SEGURO;
+		return this.valorDeVenda * Caminhao.TAXA_SEGURO + Caminhao.SEGURO_ADICIONAL;
 	}
 	
 	@Override

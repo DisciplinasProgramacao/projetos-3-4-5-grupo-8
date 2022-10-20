@@ -3,17 +3,15 @@ import java.util.Date;
 
 public abstract class Veiculo implements IVeiculo {
 	protected String placa;
-	protected double capacidadeTanque;
 	protected double limiteDiario;
 	protected double valorDeVenda;
 	protected double kmRodado;
 	protected ArrayList<Rota> rotas;
 
-	public Veiculo(String placa,  double capacidadeTanque, double seguro, double custosAdicionais,
+	public Veiculo(String placa, double seguro, double custosAdicionais,
 			double limiteDiario, double valorDeVenda) {
 		super();
 		this.placa = placa;
-		this.capacidadeTanque = capacidadeTanque;
 		this.limiteDiario = limiteDiario;
 		this.valorDeVenda = valorDeVenda;
 		this.kmRodado = 0;
@@ -34,14 +32,6 @@ public abstract class Veiculo implements IVeiculo {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	}
-
-	public double getCapacidadeTanque() {
-		return capacidadeTanque;
-	}
-
-	public void setCapacidadeTanque(double capacidadeTanque) {
-		this.capacidadeTanque = capacidadeTanque;
 	}
 
 	public double getLimiteDiario() {

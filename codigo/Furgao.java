@@ -4,14 +4,12 @@ import java.util.Date;
 public class Furgao extends Veiculo implements IVeiculo {
 	public static final double TAXA_SEGURO = 0.03;
 	public static final double TAXA_IPVA = 0.03;
-	public static final double SEGURO_ADICIONAL = 300;
-	public static final double ALINHAMENTO = 120;
-	public static final double VISTORIA = 500;
 	public static final double KMMEDIOPORLITRO = 10;
+	public static final int CAPACIDADE_TANQUE = 80;
 
 	public Furgao(String placa, double capacidadeTanque, double seguro, double custosAdicionais,
 			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
-		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario, valorDeVenda);
+		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario);
 	}
 	
 	@Override
@@ -46,7 +44,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 
 	@Override
 	public double calcularLimiteDiario() {
-		double limiteDiario = this.capacidadeTanque * Furgao.KMMEDIOPORLITRO;
+		double limiteDiario = Furgao.CAPACIDADE_TANQUE * Furgao.KMMEDIOPORLITRO;
 		return limiteDiario;
 	}
 	

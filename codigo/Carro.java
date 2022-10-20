@@ -4,12 +4,12 @@ public class Carro extends Veiculo {
 	public static final double TAXA_SEGURO = 0.05;
 	public static final double SEGURO_ADICIONAL = 300;
 	public static final double TAXA_IPVA = 0.04;
-	public static final double ALINHAMENTO = 80;
 	public static final double KMMEDIOPORLITRO = 10;
+	public static final int CAPACIDADE_TANQUE = 50;
 
 	public Carro(String placa, double capacidadeTanque, double seguro, double custosAdicionais,
 			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
-		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario, valorDeVenda);
+		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario);
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public class Carro extends Veiculo {
 
 	@Override
 	public double calcularLimiteDiario() {
-		double limiteDiario = this.capacidadeTanque * Carro.KMMEDIOPORLITRO;
+		double limiteDiario = Carro.CAPACIDADE_TANQUE * Carro.KMMEDIOPORLITRO;
 		return limiteDiario;
 	}
 	
@@ -44,7 +44,7 @@ public class Carro extends Veiculo {
 
 	@Override
 	public double calcularSeguro() {
-		return this.valorDeVenda * Carro.TAXA_SEGURO;
+		return this.valorDeVenda * Carro.TAXA_SEGURO + Carro.SEGURO_ADICIONAL;
 	}
 	
 	@Override
