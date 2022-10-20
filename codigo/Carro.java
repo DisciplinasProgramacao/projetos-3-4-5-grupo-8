@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Carro extends Veiculo {
 	public static final double TAXA_SEGURO = 0.05;
@@ -7,11 +6,18 @@ public class Carro extends Veiculo {
 	public static final double KMMEDIOPORLITRO = 10;
 	public static final int CAPACIDADE_TANQUE = 50;
 
-	public Carro(String placa, double capacidadeTanque, double seguro, double custosAdicionais,
-			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
-		super(placa, capacidadeTanque);
+	/**
+	 * @param placa
+	 * @param valorDeVenda
+	 */
+	public Carro(String placa, double valorDeVenda) {
+		super(placa, valorDeVenda);
+		this.nome = "Carro";
 	}
 	
+	/**
+	 *
+	 */
 	@Override
 	public void addRota(Rota rota) {
 		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
@@ -20,6 +26,9 @@ public class Carro extends Veiculo {
 		}
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public double calcularOutrosCustos() {
 		double alinhamento = 0;
@@ -31,22 +40,34 @@ public class Carro extends Veiculo {
 		return outrosCustos;
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public double calcularLimiteDiario() {
 		double limiteDiario = Carro.CAPACIDADE_TANQUE * Carro.KMMEDIOPORLITRO;
 		return limiteDiario;
 	}
 	
+	/**
+	 *
+	 */
 	@Override
 	public double calcularIPVA() {
 		return this.valorDeVenda * Carro.TAXA_IPVA;
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public double calcularSeguro() {
 		return this.valorDeVenda * Carro.TAXA_SEGURO + Carro.SEGURO_ADICIONAL;
 	}
 	
+	/**
+	 *
+	 */
 	@Override
 	public void gerarRelatorio() {
 		System.out.println("Tipo veículo: Carro");
