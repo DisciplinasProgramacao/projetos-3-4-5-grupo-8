@@ -2,8 +2,8 @@
 public class Caminhao extends Veiculo {
 	public static final double TAXA_SEGURO = 0.02;
 	public static final double TAXA_IPVA = 0.01;
-	public static final double SEGURO_ADICIONAL = 2000;
-	public static final double KMMEDIOPORLITRO = 10;
+	public static final double SEGURO_ADICIONAL = 2000.00;
+	public static final double KMMEDIOPORLITRO = 2.5;
 	public static final int CAPACIDADE_TANQUE = 400;
 
 	/**
