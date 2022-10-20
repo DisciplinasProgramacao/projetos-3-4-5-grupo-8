@@ -3,29 +3,21 @@ import java.util.Date;
 
 public abstract class Veiculo implements IVeiculo {
 	protected String placa;
-	protected double ipva;
 	protected double capacidadeTanque;
-	protected double seguro;
-	protected double custosAdicionais;
 	protected double limiteDiario;
 	protected double valorDeVenda;
 	protected double kmRodado;
-	protected ArrayList<Rota> rotas = new ArrayList<Rota>();
-	protected double gastoTotal;
+	protected ArrayList<Rota> rotas;
 
-	public Veiculo(String placa, double ipva, double capacidadeTanque, double seguro, double custosAdicionais,
-			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
+	public Veiculo(String placa,  double capacidadeTanque, double seguro, double custosAdicionais,
+			double limiteDiario, double valorDeVenda) {
 		super();
 		this.placa = placa;
-		this.ipva = ipva;
 		this.capacidadeTanque = capacidadeTanque;
-		this.seguro = seguro;
-		this.custosAdicionais = custosAdicionais;
 		this.limiteDiario = limiteDiario;
 		this.valorDeVenda = valorDeVenda;
-		this.kmRodado = kmRodado;
-		this.rotas = rotas;
-		this.gastoTotal = gastoTotal;
+		this.kmRodado = 0;
+		this.rotas = new ArrayList<Rota>();
 	}
 
 	public ArrayList<Rota> getRotas() {
@@ -44,36 +36,12 @@ public abstract class Veiculo implements IVeiculo {
 		this.placa = placa;
 	}
 
-	public double getIpva() {
-		return ipva;
-	}
-
-	public void setIpva(double ipva) {
-		this.ipva = ipva;
-	}
-
 	public double getCapacidadeTanque() {
 		return capacidadeTanque;
 	}
 
 	public void setCapacidadeTanque(double capacidadeTanque) {
 		this.capacidadeTanque = capacidadeTanque;
-	}
-
-	public double getSeguro() {
-		return seguro;
-	}
-
-	public void setSeguro(double seguro) {
-		this.seguro = seguro;
-	}
-
-	public double getCustosAdicionais() {
-		return custosAdicionais;
-	}
-
-	public void setCustosAdicionais(double custosAdicionais) {
-		this.custosAdicionais = custosAdicionais;
 	}
 
 	public double getLimiteDiario() {
@@ -99,24 +67,24 @@ public abstract class Veiculo implements IVeiculo {
 	public void setKmRodado(double kmRodado) {
 		this.kmRodado = kmRodado;
 	}
-
-	public double getGastoTotal() {
-		return gastoTotal;
-	}
-
-	public void setGastoTotal(double gastoTotal) {
-		this.gastoTotal = gastoTotal;
+	
+	public double obterLimitePorData(Date date) {
+		double distanciaPercorridaDia = 0;
+		for(Rota r : this.rotas) {
+			if(r.getData().equals(date)) {
+				distanciaPercorridaDia += r.getDistancia();
+			}
+		}
+		return distanciaPercorridaDia;
 	}
 
 	public abstract void addRota(Rota rota);
 	
 	public abstract double calcularOutrosCustos();
 	
-	public abstract double autonomiaDiaria();
+	public abstract double calcularIPVA();
 	
-	public abstract boolean validarLimiteDiario(Date date);
-	
-	public abstract double obterLimitePorData(Date date);
+	public abstract double calcularSeguro();
 	
 	public abstract void gerarRelatorio();
 

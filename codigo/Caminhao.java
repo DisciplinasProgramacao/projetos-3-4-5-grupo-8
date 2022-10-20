@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Caminhao extends Veiculo {
 	public static final double TAXA_SEGURO = 0.02;
@@ -7,52 +6,59 @@ public class Caminhao extends Veiculo {
 	public static final double SEGURO_ADICIONAL = 300;
 	public static final double ALINHAMENTO = 1000;
 	public static final double VISTORIA = 1000;
+	public static final double KMMEDIOPORLITRO = 10;
 
-	public Caminhao(String placa, double ipva, double capacidadeTanque, double seguro, double custosAdicionais,
+	public Caminhao(String placa, double capacidadeTanque, double seguro, double custosAdicionais,
 			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
-		super(placa, ipva, capacidadeTanque, seguro, custosAdicionais, limiteDiario, valorDeVenda, kmRodado, rotas,
-				gastoTotal);
-		// TODO Auto-generated constructor stub
+		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario, valorDeVenda);
 	}
 	
 	@Override
 	public void addRota(Rota rota) {
-		if(validarLimiteDiario(rota.getData())) {
+		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
+		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
 		}
 	}
 
 	@Override
-	public double autonomiaDiaria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public boolean validarLimiteDiario(Date date) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public double obterLimitePorData(Date date) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public double calcularOutrosCustos() {
-		return 0.00;
-	}
-
-	@Override
-	public void gerarRelatorio() {
-		// TODO Auto-generated method stub
+		double manutencao = 0;
+		double vistoria = 0;
+		if(this.kmRodado >= 2000) {
+			int calc = (int) (this.kmRodado / 2000);
+			manutencao = calc * 1000;
+		}
+		if(this.kmRodado >= 3000) {
+			int calc = (int) (this.kmRodado / 3000);
+			vistoria = calc * 1000;
+		} 
+		double outrosCustos = manutencao + vistoria;
+		return outrosCustos;
 	}
 
 	@Override
 	public double calcularLimiteDiario() {
-		// TODO Auto-generated method stub
-		return 0;
+		double limiteDiario = this.capacidadeTanque * Caminhao.KMMEDIOPORLITRO;
+		return limiteDiario;
+	}
+
+	@Override
+	public double calcularIPVA() {
+		return this.valorDeVenda * Caminhao.TAXA_IPVA;
+	}
+
+	@Override
+	public double calcularSeguro() {
+		return this.valorDeVenda * Caminhao.TAXA_SEGURO;
+	}
+	
+	@Override
+	public void gerarRelatorio() {
+		System.out.println("Tipo veículo: Caminhão");
+		System.out.println("Placa: " + this.placa);
+		System.out.println("IPVA: " + this.calcularIPVA());
+		System.out.println("IPVA: " + this.calcularSeguro());
+		System.out.println("Outros custos: " + this.calcularOutrosCustos());
 	}
 }
