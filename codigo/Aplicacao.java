@@ -85,10 +85,6 @@ public class Aplicacao {
 	 */
 	public static void main(String[] args) throws IOException {
 		 Frota frota = lerArquivo();
-		 for(Veiculo v : frota.getVeiculos()) {
-			 v.gerarRelatorio();
-			 System.out.println("------------------------------------");
-		 }
 		 
 		 Scanner in = new Scanner( System.in );
 	        String opcao = "-1";

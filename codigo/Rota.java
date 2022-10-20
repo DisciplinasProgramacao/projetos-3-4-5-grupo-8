@@ -1,7 +1,6 @@
 import java.util.Date;
 
 public class Rota {
-	private int id;
 	private double distancia;
 	private Date data;
 	private String origem;
@@ -18,20 +17,6 @@ public class Rota {
 		this.data = data;
 		this.origem = origem;
 		this.destino = destino;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	/**
