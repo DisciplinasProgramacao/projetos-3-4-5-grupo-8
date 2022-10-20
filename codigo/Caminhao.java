@@ -4,7 +4,7 @@ public class Caminhao extends Veiculo {
 	public static final double TAXA_IPVA = 0.01;
 	public static final double SEGURO_ADICIONAL = 2000;
 	public static final double KMMEDIOPORLITRO = 10;
-	public static final int CAPACIDADE_TANQUE = 250;
+	public static final int CAPACIDADE_TANQUE = 400;
 
 	/**
 	 * @param placa
@@ -12,7 +12,7 @@ public class Caminhao extends Veiculo {
 	 */
 	public Caminhao(String placa, double valorDeVenda) {
 		super(placa, valorDeVenda);
-		this.nome = "Caminhão";
+		this.nome = "Caminhï¿½o";
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veículo: Caminhão");
+		System.out.println("Tipo veï¿½culo: Caminhï¿½o");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());

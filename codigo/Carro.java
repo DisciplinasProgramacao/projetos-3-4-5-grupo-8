@@ -3,7 +3,7 @@ public class Carro extends Veiculo {
 	public static final double TAXA_SEGURO = 0.05;
 	public static final double SEGURO_ADICIONAL = 300;
 	public static final double TAXA_IPVA = 0.04;
-	public static final double KMMEDIOPORLITRO = 10;
+	public static final double KMMEDIOPORLITRO = 2.5;
 	public static final int CAPACIDADE_TANQUE = 50;
 
 	/**
@@ -70,7 +70,7 @@ public class Carro extends Veiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veículo: Carro");
+		System.out.println("Tipo veï¿½culo: Carro");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());

@@ -3,7 +3,7 @@ import java.util.Date;
 public class Furgao extends Veiculo implements IVeiculo {
 	public static final double TAXA_SEGURO = 0.03;
 	public static final double TAXA_IPVA = 0.03;
-	public static final double KMMEDIOPORLITRO = 10;
+	public static final double KMMEDIOPORLITRO = 5;
 	public static final int CAPACIDADE_TANQUE = 80;
 
 	/**
@@ -12,7 +12,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	public Furgao(String placa, double valorDeVenda) {
 		super(placa, valorDeVenda);
-		this.nome = "Furgão";
+		this.nome = "Furgï¿½o";
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veículo: Furgão");
+		System.out.println("Tipo veï¿½culo: Furgï¿½o");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());
