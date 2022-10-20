@@ -9,12 +9,8 @@ public class Rota {
 	
 	public Rota(double distancia , Date data , String origem , String destino) {
 		this.distancia = distancia;
-		this.date = data;
+		this.data = data;
 		this.origem = origem;
 		this.destino = destino;
-	}
-
-	public Rota obterRota() {
-		
 	}
 }
