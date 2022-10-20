@@ -18,7 +18,7 @@ public class Frota {
 	}
 	
 	/**
-	 * @return
+	 * retorna veiculos de uma frota
 	 */
 	public ArrayList<Veiculo> getVeiculos() {
 		return veiculos;
@@ -32,15 +32,14 @@ public class Frota {
 	}
 
 	/**
-	 * @param veiculo
+	 * Adiciona veiculo a uma frota
 	 */
 	public void addVeiculo(Veiculo veiculo) {
 		this.veiculos.add(veiculo);
 	}
 	
 	/**
-	 * @param placa
-	 * @return
+	 * Localiza veiculo presente em uma frota a partir de sua placa
 	 */
 	public Veiculo localizarVeiculo(String placa) {
 		for(Veiculo v : this.veiculos) {

@@ -16,7 +16,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	}
 	
 	/**
-	 *
+	 * Adiciona Rota a um veiculo
 	 */
 	@Override
 	public void addRota(Rota rota) {
@@ -36,7 +36,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	}
 
 	/**
-	 *
+	 * Calcula custos adicionais do veiculo
 	 */
 	@Override
 	public double calcularOutrosCustos() {
@@ -55,7 +55,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	}
 
 	/**
-	 *
+	 * Calcula o limite de rotas diarias do veiculo com base no seu tanque e rotas ja cadastradas
 	 */
 	@Override
 	public double calcularLimiteDiario() {
@@ -64,7 +64,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	}
 	
 	/**
-	 *
+	 * Calcula IPVA do veiculo
 	 */
 	@Override
 	public double calcularIPVA() {
@@ -72,7 +72,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	}
 
 	/**
-	 *
+	 * Calcula Seguro do veiculo
 	 */
 	@Override
 	public double calcularSeguro() {
@@ -80,7 +80,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	}
 	
 	/**
-	 *
+	 * Gera relatorio de todos os Furgao
 	 */
 	@Override
 	public void gerarRelatorio() {

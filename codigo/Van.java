@@ -15,7 +15,7 @@ public class Van extends Veiculo implements IVeiculo {
 	}
 	
 	/**
-	 *
+	 * Adiciona Rota a um veiculo
 	 */
 	@Override
 	public void addRota(Rota rota) {
@@ -26,7 +26,7 @@ public class Van extends Veiculo implements IVeiculo {
 	}
 
 	/**
-	 *
+	 * Calcula custos adicionais do veiculo
 	 */
 	@Override
 	public double calcularOutrosCustos() {
@@ -45,7 +45,7 @@ public class Van extends Veiculo implements IVeiculo {
 	}
 
 	/**
-	 *
+	 * Calcula o limite de rotas diarias do veiculo com base no seu tanque e rotas ja cadastradas
 	 */
 	@Override
 	public double calcularLimiteDiario() {
@@ -54,7 +54,7 @@ public class Van extends Veiculo implements IVeiculo {
 	}
 	
 	/**
-	 *
+	 * Calcula IPVA do veiculo
 	 */
 	@Override
 	public double calcularIPVA() {
@@ -62,7 +62,7 @@ public class Van extends Veiculo implements IVeiculo {
 	}
 
 	/**
-	 *
+	 * Calcula Seguro do veiculo
 	 */
 	@Override
 	public double calcularSeguro() {
@@ -70,11 +70,11 @@ public class Van extends Veiculo implements IVeiculo {
 	}
 	
 	/**
-	 *
+	 * Gera relatorio de todos as Vans
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veículo: Van");
+		System.out.println("Tipo veï¿½culo: Van");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());
