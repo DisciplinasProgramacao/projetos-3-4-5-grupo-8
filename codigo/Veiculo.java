@@ -3,18 +3,14 @@ import java.util.Date;
 
 public abstract class Veiculo implements IVeiculo {
 	protected String placa;
-	protected double limiteDiario;
 	protected double valorDeVenda;
 	protected double kmRodado;
 	protected ArrayList<Rota> rotas;
 
-	public Veiculo(String placa, double seguro, double custosAdicionais,
-			double limiteDiario, double valorDeVenda) {
+	public Veiculo(String placa, double valorDeVenda) {
 		super();
 		this.placa = placa;
-		this.limiteDiario = limiteDiario;
 		this.valorDeVenda = valorDeVenda;
-		this.kmRodado = 0;
 		this.rotas = new ArrayList<Rota>();
 	}
 
@@ -34,28 +30,12 @@ public abstract class Veiculo implements IVeiculo {
 		this.placa = placa;
 	}
 
-	public double getLimiteDiario() {
-		return limiteDiario;
-	}
-
-	public void setLimiteDiario(double limiteDiario) {
-		this.limiteDiario = limiteDiario;
-	}
-
 	public double getValorDeVenda() {
 		return valorDeVenda;
 	}
 
 	public void setValorDeVenda(double valorDeVenda) {
 		this.valorDeVenda = valorDeVenda;
-	}
-
-	public double getKmRodado() {
-		return kmRodado;
-	}
-
-	public void setKmRodado(double kmRodado) {
-		this.kmRodado = kmRodado;
 	}
 	
 	public double obterLimitePorData(Date date) {
@@ -66,6 +46,15 @@ public abstract class Veiculo implements IVeiculo {
 			}
 		}
 		return distanciaPercorridaDia;
+	}
+	
+	public double calcularKmRodado() {
+		double km = 0;
+		for(Rota r : this.rotas) {
+				km += r.getDistancia();
+		}
+		this.kmRodado = km;
+		return km;
 	}
 
 	public abstract void addRota(Rota rota);

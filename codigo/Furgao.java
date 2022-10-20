@@ -9,7 +9,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 
 	public Furgao(String placa, double capacidadeTanque, double seguro, double custosAdicionais,
 			double limiteDiario, double valorDeVenda, double kmRodado, ArrayList<Rota> rotas, double gastoTotal) {
-		super(placa, capacidadeTanque, seguro, custosAdicionais, limiteDiario);
+		super(placa, capacidadeTanque);
 	}
 	
 	@Override
