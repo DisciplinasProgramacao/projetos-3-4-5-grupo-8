@@ -3,7 +3,7 @@ public class Carro extends Veiculo {
 	public static final double TAXA_SEGURO = 0.05;
 	public static final double SEGURO_ADICIONAL = 300;
 	public static final double TAXA_IPVA = 0.04;
-	public static final double KMMEDIOPORLITRO = 2.5;
+	public static final double KMMEDIOPORLITRO = 10;
 	public static final int CAPACIDADE_TANQUE = 50;
 
 	/**
@@ -23,6 +23,7 @@ public class Carro extends Veiculo {
 		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
+			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
 	}
 	
@@ -33,8 +34,8 @@ public class Carro extends Veiculo {
 	@Override
 	public double calcularOutrosCustos() {
 		double alinhamento = 0;
-		if(this.kmRodado >= 1000) {
-			int calc = (int) (this.kmRodado / 1000);
+		if(this.kmRodado >= 10000) {
+			int calc = (int) (this.kmRodado / 10000);
 			alinhamento = calc * 80;
 		}
 		double outrosCustos = alinhamento;

@@ -3,7 +3,7 @@ public class Caminhao extends Veiculo {
 	public static final double TAXA_SEGURO = 0.02;
 	public static final double TAXA_IPVA = 0.01;
 	public static final double SEGURO_ADICIONAL = 2000.00;
-	public static final double KMMEDIOPORLITRO = 2.5;
+	public static final double KMMEDIOPORLITRO = 5;
 	public static final int CAPACIDADE_TANQUE = 400;
 
 	/**
@@ -23,6 +23,7 @@ public class Caminhao extends Veiculo {
 		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
+			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
 	}
 
@@ -33,12 +34,12 @@ public class Caminhao extends Veiculo {
 	public double calcularOutrosCustos() {
 		double manutencao = 0;
 		double vistoria = 0;
-		if(this.kmRodado >= 2000) {
-			int calc = (int) (this.kmRodado / 2000);
+		if(this.kmRodado >= 20000) {
+			int calc = (int) (this.kmRodado / 20000);
 			manutencao = calc * 1000;
 		}
-		if(this.kmRodado >= 3000) {
-			int calc = (int) (this.kmRodado / 3000);
+		if(this.kmRodado >= 30000) {
+			int calc = (int) (this.kmRodado / 30000);
 			vistoria = calc * 1000;
 		} 
 		double outrosCustos = manutencao + vistoria;

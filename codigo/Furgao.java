@@ -3,7 +3,7 @@ import java.util.Date;
 public class Furgao extends Veiculo implements IVeiculo {
 	public static final double TAXA_SEGURO = 0.03;
 	public static final double TAXA_IPVA = 0.03;
-	public static final double KMMEDIOPORLITRO = 5;
+	public static final double KMMEDIOPORLITRO = 6.25;
 	public static final int CAPACIDADE_TANQUE = 80;
 
 	/**
@@ -20,9 +20,10 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	@Override
 	public void addRota(Rota rota) {
-		double distanciaLimiteMaisAdicionada  = obterLimitePorData(rota.getData()) + rota.getDistancia();
+		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
+			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
 	}
 
@@ -42,13 +43,13 @@ public class Furgao extends Veiculo implements IVeiculo {
 	public double calcularOutrosCustos() {
 		double alinhamento = 0;
 		double vistoria = 0;
-		if(this.kmRodado >= 1000) {
-			int calc = (int) (this.kmRodado / 1000);
+		if(this.kmRodado >= 10000) {
+			int calc = (int) (this.kmRodado / 10000);
 			alinhamento = calc * 120;
 		}
-		if(this.kmRodado >= 1000) {
-			int calc = (int) (this.kmRodado / 1000);
-			vistoria = calc * 5000;
+		if(this.kmRodado >= 10000) {
+			int calc = (int) (this.kmRodado / 10000);
+			vistoria = calc * 500;
 		} 
 		double outrosCustos = alinhamento + vistoria;
 		return outrosCustos;

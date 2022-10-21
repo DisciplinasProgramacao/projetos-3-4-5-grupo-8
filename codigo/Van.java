@@ -22,6 +22,7 @@ public class Van extends Veiculo implements IVeiculo {
 		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
+			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
 	}
 
@@ -32,13 +33,13 @@ public class Van extends Veiculo implements IVeiculo {
 	public double calcularOutrosCustos() {
 		double alinhamento = 0;
 		double vistoria = 0;
-		if(this.kmRodado >= 1000) {
-			int calc = (int) (this.kmRodado / 1000);
+		if(this.kmRodado >= 10000) {
+			int calc = (int) (this.kmRodado / 10000);
 			alinhamento = calc * 120;
 		}
-		if(this.kmRodado >= 1000) {
-			int calc = (int) (this.kmRodado / 1000);
-			vistoria = calc * 5000;
+		if(this.kmRodado >= 10000) {
+			int calc = (int) (this.kmRodado / 10000);
+			vistoria = calc * 500;
 		} 
 		double outrosCustos = alinhamento + vistoria;
 		return outrosCustos;
@@ -74,7 +75,7 @@ public class Van extends Veiculo implements IVeiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veículo: Van");
+		System.out.println("Tipo veï¿½culo: Van");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());
