@@ -20,56 +20,56 @@ public class Rota {
 	}
 
 	/**
-	 * @return
+	 * Pega distancia de uma rota
 	 */
 	public double getDistancia() {
 		return distancia;
 	}
 
 	/**
-	 * @param distancia
+	 * fixa distancia de uma rota
 	 */
 	public void setDistancia(double distancia) {
 		this.distancia = distancia;
 	}
 
 	/**
-	 * @return
+	 * Pega data de uma rota
 	 */
 	public Date getData() {
 		return data;
 	}
 
 	/**
-	 * @param data
+	 * fixa data de uma rota
 	 */
 	public void setData(Date data) {
 		this.data = data;
 	}
 
 	/**
-	 * @return
+	 * Pega origem de uma rota
 	 */
 	public String getOrigem() {
 		return origem;
 	}
 
 	/**
-	 * @param origem
+	 * fixa origem de uma rota
 	 */
 	public void setOrigem(String origem) {
 		this.origem = origem;
 	}
 
 	/**
-	 * @return
+	 * Pega destino de uma rota
 	 */
 	public String getDestino() {
 		return destino;
 	}
 
 	/**
-	 * @param destino
+	 * fixa destino de uma rota
 	 */
 	public void setDestino(String destino) {
 		this.destino = destino;

@@ -12,11 +12,11 @@ public class Caminhao extends Veiculo {
 	 */
 	public Caminhao(String placa, double valorDeVenda) {
 		super(placa, valorDeVenda);
-		this.nome = "Caminhï¿½o";
+		this.nome = "Caminhão";
 	}
 	
 	/**
-	 *
+	 * Adiciona Rota a um veiculo
 	 */
 	@Override
 	public void addRota(Rota rota) {
@@ -28,7 +28,7 @@ public class Caminhao extends Veiculo {
 	}
 
 	/**
-	 *
+	 *  Calcula custos adicionais do veiculo
 	 */
 	@Override
 	public double calcularOutrosCustos() {
@@ -47,7 +47,7 @@ public class Caminhao extends Veiculo {
 	}
 
 	/**
-	 *
+	 * Calcula o limite de rotas diarias do veiculo com base no seu tanque e rotas ja cadastradas
 	 */
 	@Override
 	public double calcularLimiteDiario() {
@@ -56,7 +56,7 @@ public class Caminhao extends Veiculo {
 	}
 
 	/**
-	 *
+	 * Calcula IPVA do veiculo
 	 */
 	@Override
 	public double calcularIPVA() {
@@ -64,7 +64,7 @@ public class Caminhao extends Veiculo {
 	}
 
 	/**
-	 *
+	 * Calcula Seguro do veiculo
 	 */
 	@Override
 	public double calcularSeguro() {
@@ -72,7 +72,7 @@ public class Caminhao extends Veiculo {
 	}
 	
 	/**
-	 *
+	 * Gera relatorio de todos os Caminhoes
 	 */
 	@Override
 	public void gerarRelatorio() {

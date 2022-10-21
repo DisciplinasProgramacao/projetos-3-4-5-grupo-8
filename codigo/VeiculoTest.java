@@ -20,7 +20,7 @@ class VeiculoTest {
 	
 	@Test
 	void testCriaCarro() {
-		assertEquals("" , carro.getNome());
+		assertEquals("Carro" , carro.getNome());
 		assertEquals("DEF123" , carro.getPlaca());
 		assertEquals(30999.99 , carro.getValorDeVenda());
 		assertEquals(0 , carro.getKmRodado());
@@ -34,7 +34,7 @@ class VeiculoTest {
 	
 	@Test
 	void testCriaCaminhao() {
-		assertEquals("" , caminhao.getNome());
+		assertEquals("Caminhão" , caminhao.getNome());
 		assertEquals("ABC123" , caminhao.getPlaca());
 		assertEquals(700999.99 , caminhao.getValorDeVenda());
 		assertEquals(0 , caminhao.getKmRodado());
@@ -48,7 +48,7 @@ class VeiculoTest {
 	
 	@Test
 	void testCriaFurgao() {
-		assertEquals("" , furgao.getNome());
+		assertEquals("Furgão" , furgao.getNome());
 		assertEquals("GHI123" , furgao.getPlaca());
 		assertEquals(60999.99 , furgao.getValorDeVenda());
 		assertEquals(0 , furgao.getKmRodado());
@@ -61,7 +61,7 @@ class VeiculoTest {
 	
 	@Test
 	void testCriaVan() {
-		assertEquals("" , van.getNome());
+		assertEquals("Van" , van.getNome());
 		assertEquals("JKL123" , van.getPlaca());
 		assertEquals(90999.99 , van.getValorDeVenda());
 		assertEquals(0 , van.getKmRodado());

@@ -16,7 +16,7 @@ public class Carro extends Veiculo {
 	}
 	
 	/**
-	 *
+	 * Adiciona Rota a um veiculo
 	 */
 	@Override
 	public void addRota(Rota rota) {
@@ -29,7 +29,7 @@ public class Carro extends Veiculo {
 	
 
 	/**
-	 *
+	 * Calcula custos adicionais do veiculo
 	 */
 	@Override
 	public double calcularOutrosCustos() {
@@ -43,7 +43,7 @@ public class Carro extends Veiculo {
 	}
 
 	/**
-	 *
+	 * Calcula o limite de rotas diarias do veiculo com base no seu tanque e rotas ja cadastradas
 	 */
 	@Override
 	public double calcularLimiteDiario() {
@@ -51,16 +51,16 @@ public class Carro extends Veiculo {
 		return limiteDiario;
 	}
 	
-	/**
-	 *
-	 */
+	/** 
+	 * Calcula IPVA do veiculo
+	 */ 
 	@Override
 	public double calcularIPVA() {
 		return this.valorDeVenda * Carro.TAXA_IPVA;
 	}
 
 	/**
-	 *
+	 * Calcula Seguro do veiculo
 	 */
 	@Override
 	public double calcularSeguro() {
@@ -68,7 +68,7 @@ public class Carro extends Veiculo {
 	}
 	
 	/**
-	 *
+	 * Gera relatorio de todos os Carros
 	 */
 	@Override
 	public void gerarRelatorio() {
