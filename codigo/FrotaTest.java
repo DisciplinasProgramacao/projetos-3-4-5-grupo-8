@@ -1,33 +1,40 @@
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class FrotaTest {
-	Carro carro1;
-	Carro carro2 = new Carro("FRO321" , 30993.99);	
-	Frota frota;
-	ArrayList<Veiculo> arrayveiculo = new ArrayList<Veiculo>();
+
+public class FrotaTest {
 	
-	@BeforeEach
-	void criaFrota() {
-		carro1 = new Carro("DEF123" , 30999.99);
-		arrayveiculo.add(carro1);
-		frota = new Frota(arrayveiculo);
-	}
-	
-	@Test
-	void testRetornoVeiculos() {		
-		frota.getVeiculos();
-	}
-	
-	@Test
-	void testAdcionaVeiculos() {	
-		frota.addVeiculo(carro2);
-	}	
-	
-	@Test
-	void testLocalizaVeiculos() {	
-		frota.localizarVeiculo("DEF123");
-	}
+
+	static Carro carro;
+
+    @Test
+    public void adicaoVeiculo(){ 
+    	carro = new Carro("ABC1A23", 50.00);
+        Frota frota = new Frota();
+        frota.addVeiculo(carro);
+        assertEquals(1, frota.getVeiculos().size());
+    }
+    
+
+    @Test
+    public void localizarCarro(){ 
+    	carro = new Carro("ABC1A23", 50.00);
+        Frota frota = new Frota();
+        frota.addVeiculo(carro);
+        Veiculo v = frota.localizarVeiculo("ABC1A23");
+        assertEquals("ABC1A23", v.getPlaca());
+    }
+    
+    @Test
+    public void obterVeiculos(){ 
+    	carro = new Carro("ABC1A23", 50.00);
+        Frota frota = new Frota();
+        frota.addVeiculo(carro);
+        assertEquals(1, frota.getVeiculos().size());
+    }
+
+
+
+    
 }
