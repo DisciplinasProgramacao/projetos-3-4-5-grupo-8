@@ -12,7 +12,7 @@ public class Caminhao extends Veiculo {
 	 */
 	public Caminhao(String placa, double valorDeVenda) {
 		super(placa, valorDeVenda);
-		this.nome = "Caminhï¿½o";
+		this.nome = "Caminhão";
 	}
 	
 	/**

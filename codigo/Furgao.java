@@ -12,7 +12,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	public Furgao(String placa, double valorDeVenda) {
 		super(placa, valorDeVenda);
-		this.nome = "Furgï¿½o";
+		this.nome = "Furgão";
 	}
 	
 	/**
