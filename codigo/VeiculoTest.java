@@ -40,7 +40,7 @@ class VeiculoTest {
 		assertEquals(0 , caminhao.getKmRodado());
 		assertTrue(caminhao.getRotas().isEmpty());
 		assertEquals(0.02 , Caminhao.TAXA_SEGURO);
-		assertEquals(2000 , Caminhao.SEGURO_ADICIONAL);
+		assertEquals(2000.00 , Caminhao.SEGURO_ADICIONAL);
 		assertEquals(0.01 , Caminhao.TAXA_IPVA);
 		assertEquals(2.5 , Caminhao.KMMEDIOPORLITRO);
 		assertEquals(400 , Caminhao.CAPACIDADE_TANQUE);

@@ -25,6 +25,7 @@ public class Carro extends Veiculo {
 			this.rotas.add(rota);
 		}
 	}
+	
 
 	/**
 	 * Calcula custos adicionais do veiculo
