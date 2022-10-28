@@ -13,5 +13,5 @@ Para isso, em um primeiro momento, pretende monitorar os gastos relativos aos ve
 
 ## Professores responsáveis
 
-* Claiton Tavares
+* Cleiton Tavares
 
