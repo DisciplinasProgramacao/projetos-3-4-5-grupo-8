@@ -1,9 +1,11 @@
 public class Gasolina extends Combustivel{
-	protected static final double VALORMEDIOLITRO = 4.8;
-	protected static final double CONSUMO = 12;
+	public static final double VALORMEDIOLITRO = 4.8;
+	public static final double CONSUMO = 12;
 	
 	public Gasolina() {
 		super();
+		this.setConsumo(CONSUMO);
+		this.setValorMedioLitro(VALORMEDIOLITRO);
 	}
 	
 	@Override

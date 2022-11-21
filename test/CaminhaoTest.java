@@ -43,8 +43,8 @@ class CaminhaoTest {
 	@SuppressWarnings("deprecation")
 	@BeforeEach
 	public void init() {
-		caminhaoA = new Caminhao ("ABC1A23", 50.00);
-		caminhaoB = new Caminhao ("ABC1A24", 60.00);
+		caminhaoA = new Caminhao ("ABC1A23", 50.00, 3);
+		caminhaoB = new Caminhao ("ABC1A24", 60.00, 3);
 		rotaA = new Rota(new Date (2022, 12, 1), "Rua 2", "Rua 3", 1250);
 		rotaB = new Rota(new Date (2022, 12, 2), "Rua 4", "Rua 5", 1250);
 		rotaC = new Rota(new Date (2022, 12, 3), "Rua 6", "Rua 7", 1250);

@@ -7,17 +7,34 @@ public abstract class Veiculo implements IVeiculo {
 	protected double valorDeVenda;
 	protected double kmRodado;
 	protected ArrayList<Rota> rotas;
+	protected Combustivel combustivel;
+	protected double tanque;
+	protected ArrayList<Double> manutencaoNaoProgramada;
 
 	/**
 	 * @param placa
 	 * @param valorDeVenda
 	 */
-	public Veiculo(String placa, double valorDeVenda) {
+	public Veiculo(String placa, double valorDeVenda, int combustivel) {
 		this.nome = "";
 		this.placa = placa;
 		this.valorDeVenda = valorDeVenda;
 		this.kmRodado = 0;
 		this.rotas = new ArrayList<Rota>();
+		switch (combustivel) {
+		case 1:
+			this.combustivel = new Gasolina();
+		break;
+		case 2:
+			this.combustivel = new Etanol();
+		break;
+		case 3:
+			this.combustivel = new Diesel();
+		break;
+		default:
+			throw new IllegalArgumentException("Valor inesperado: " + combustivel);
+		}
+		manutencaoNaoProgramada = new ArrayList<Double>();
 	}
 
 	/**
@@ -140,5 +157,15 @@ public abstract class Veiculo implements IVeiculo {
 	 *
 	 */
 	public abstract void gerarRelatorio();
+	
+	/**
+	 *
+	 */
+	public abstract double calcularCustosTotais();
+	
+	/**
+	 *
+	 */
+	public abstract void encherTanque();
 
 }

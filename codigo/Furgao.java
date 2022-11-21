@@ -10,9 +10,10 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 * @param placa
 	 * @param valorDeVenda
 	 */
-	public Furgao(String placa, double valorDeVenda) {
-		super(placa, valorDeVenda);
+	public Furgao(String placa, double valorDeVenda, int combustivel) {
+		super(placa, valorDeVenda, combustivel);
 		this.nome = "Furgão";
+		this.tanque = CAPACIDADE_TANQUE;
 	}
 	
 	/**
@@ -24,7 +25,24 @@ public class Furgao extends Veiculo implements IVeiculo {
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
 			this.setKmRodado(this.kmRodado + rota.getDistancia());
+			this.tanque -= rota.getDistancia() / this.combustivel.getConsumo();
+		} else {
+			System.out.println("Tanque abastecido por não ter combustivel suficiente para a rota atual.");
+			this.encherTanque();
+			this.rotas.add(rota);
+			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
+		
+		// cria um loop para imprimir 7 valores aleatórios entre 1 e 20
+		for (int i = 0; i < 7; i++) {
+	        int numRandom = (int)(Math.random() * 20 ) + 1;
+	     // se os valores gerados forem 5, 7 ou 16 gera uma manutenção não programada
+	        if(numRandom == 5 || numRandom == 7 || numRandom == 16) {
+	        	System.out.println("Apareceu uma manutenção não programada no valor de R$" + numRandom * 10.00);
+	        	this.manutencaoNaoProgramada.add(numRandom * 10.00);
+	        }
+
+	     }
 	}
 
 	/**
@@ -90,5 +108,26 @@ public class Furgao extends Veiculo implements IVeiculo {
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());
 		System.out.println("Outros custos: " + this.calcularOutrosCustos());
+	}
+	
+	/**
+	 *
+	 */
+	@Override
+	public double calcularCustosTotais() {
+		double custosTotais = 0;
+		custosTotais = this.calcularIPVA() + this.calcularSeguro() + this.calcularOutrosCustos();
+		for(double m: this.manutencaoNaoProgramada) {
+			custosTotais += m;
+		}
+		return custosTotais;
+	}
+	
+	/**
+	 *
+	 */
+	@Override
+	public void encherTanque() {
+		this.tanque = CAPACIDADE_TANQUE;
 	}
 }

@@ -39,8 +39,8 @@ class FurgaoTest {
 	@SuppressWarnings("deprecation")
 	@BeforeEach
 	public void init() {
-		furgaoA = new Furgao("ABC1A23", 50.00);
-		furgaoB = new Furgao("ABC1A24", 60.00);
+		furgaoA = new Furgao("ABC1A23", 50.00, 1);
+		furgaoB = new Furgao("ABC1A24", 60.00, 1);
 		rotaA = new Rota(new Date (2022, 12, 1), "Rua 2", "Rua 3", 500);
 		rotaB = new Rota(new Date (2022, 12, 2), "Rua 4", "Rua 5", 500);
 		rotaC = new Rota(new Date (2022, 12, 3), "Rua 6", "Rua 7", 500);

@@ -7,4 +7,6 @@ public interface IVeiculo {
 	public double calcularIPVA();
 	public double calcularSeguro();
 	public void gerarRelatorio();
+	public double calcularCustosTotais();
+	public abstract void encherTanque();
 }

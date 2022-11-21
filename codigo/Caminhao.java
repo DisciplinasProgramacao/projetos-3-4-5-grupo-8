@@ -3,16 +3,16 @@ public class Caminhao extends Veiculo {
 	public static final double TAXA_SEGURO = 0.02;
 	public static final double TAXA_IPVA = 0.01;
 	public static final double SEGURO_ADICIONAL = 2000.00;
-	public static final double KMMEDIOPORLITRO = 5;
 	public static final int CAPACIDADE_TANQUE = 400;
 
 	/**
 	 * @param placa
 	 * @param valorDeVenda
 	 */
-	public Caminhao(String placa, double valorDeVenda) {
-		super(placa, valorDeVenda);
+	public Caminhao(String placa, double valorDeVenda, int combustivel) {
+		super(placa, valorDeVenda, combustivel);
 		this.nome = "Caminhão";
+		this.tanque = CAPACIDADE_TANQUE;
 	}
 	
 	/**
@@ -24,7 +24,24 @@ public class Caminhao extends Veiculo {
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
 			this.setKmRodado(this.kmRodado + rota.getDistancia());
+			this.tanque -= rota.getDistancia() / this.combustivel.getConsumo();
+		} else {
+			System.out.println("Tanque abastecido por não ter combustivel suficiente para a rota atual.");
+			this.encherTanque();
+			this.rotas.add(rota);
+			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
+		
+		// cria um loop para imprimir 7 valores aleatórios entre 1 e 20
+		for (int i = 0; i < 7; i++) {
+	        int numRandom = (int)(Math.random() * 20 ) + 1;
+	     // se os valores gerados forem 5, 7 ou 16 gera uma manutenção não programada
+	        if(numRandom == 5 || numRandom == 7 || numRandom == 16) {
+	        	System.out.println("Apareceu uma manutenção não programada no valor de R$" + numRandom * 10.00);
+	        	this.manutencaoNaoProgramada.add(numRandom * 10.00);
+	        }
+
+	     }
 	}
 
 	/**
@@ -51,7 +68,7 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public double calcularLimiteDiario() {
-		double limiteDiario = Caminhao.CAPACIDADE_TANQUE * Caminhao.KMMEDIOPORLITRO;
+		double limiteDiario = this.tanque * this.combustivel.getConsumo();
 		return limiteDiario;
 	}
 
@@ -76,10 +93,31 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veï¿½culo: Caminhï¿½o");
+		System.out.println("Tipo veículo: Caminhão");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());
 		System.out.println("Outros custos: " + this.calcularOutrosCustos());
+	}
+	
+	/**
+	 *
+	 */
+	@Override
+	public double calcularCustosTotais() {
+		double custosTotais = 0;
+		custosTotais = this.calcularIPVA() + this.calcularSeguro() + this.calcularOutrosCustos();
+		for(double m: this.manutencaoNaoProgramada) {
+			custosTotais += m;
+		}
+		return custosTotais;
+	}
+	
+	/**
+	 *
+	 */
+	@Override
+	public void encherTanque() {
+		this.tanque = CAPACIDADE_TANQUE;
 	}
 }

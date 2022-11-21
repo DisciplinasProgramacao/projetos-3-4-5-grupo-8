@@ -75,6 +75,10 @@ public class Rota {
 		this.destino = destino;
 	}
 
+	@Override
+	public String toString() {
+		return "Rota [Distancia " + distancia + ", Data " + data + ", Origem " + origem + ", Destino " + destino + "]";
+	}
 	
 	
 }

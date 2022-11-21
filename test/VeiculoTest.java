@@ -11,10 +11,10 @@ class VeiculoTest {
 
 	@BeforeEach
 	public void criaVeiculo() {
-		caminhao = new Caminhao("ABC123" , 700999.99);
-		carro = new Carro("DEF123" , 30999.99);
-		furgao = new Furgao("GHI123" , 60999.99);
-		van = new Van("JKL123" , 90999.99);
+		caminhao = new Caminhao("ABC123" , 700999.99, 3);
+		carro = new Carro("DEF123" , 30999.99, 1);
+		furgao = new Furgao("GHI123" , 60999.99, 1);
+		van = new Van("JKL123" , 90999.99, 1);
 		
 	}
 	
@@ -28,7 +28,6 @@ class VeiculoTest {
 		assertEquals(0.05 , Carro.TAXA_SEGURO);
 		assertEquals(300 , Carro.SEGURO_ADICIONAL);
 		assertEquals(0.04 , Carro.TAXA_IPVA);
-		assertEquals(10 , Carro.KMMEDIOPORLITRO);
 		assertEquals(50 , Carro.CAPACIDADE_TANQUE);
 	}
 	
@@ -42,7 +41,6 @@ class VeiculoTest {
 		assertEquals(0.02 , Caminhao.TAXA_SEGURO);
 		assertEquals(2000.00 , Caminhao.SEGURO_ADICIONAL);
 		assertEquals(0.01 , Caminhao.TAXA_IPVA);
-		assertEquals(2.5 , Caminhao.KMMEDIOPORLITRO);
 		assertEquals(400 , Caminhao.CAPACIDADE_TANQUE);
 	}
 	
@@ -55,7 +53,6 @@ class VeiculoTest {
 		assertTrue(furgao.getRotas().isEmpty());
 		assertEquals(0.03 , Furgao.TAXA_SEGURO);
 		assertEquals(0.03 , Furgao.TAXA_IPVA);
-		assertEquals(5 , Furgao.KMMEDIOPORLITRO);
 		assertEquals(80 , Furgao.CAPACIDADE_TANQUE);
 	}
 	
@@ -68,7 +65,6 @@ class VeiculoTest {
 		assertTrue(van.getRotas().isEmpty());
 		assertEquals(0.03 , Van.TAXA_SEGURO);
 		assertEquals(0.03 , Van.TAXA_IPVA);
-		assertEquals(10 , Van.KMMEDIOPORLITRO);
 		assertEquals(60 , Van.CAPACIDADE_TANQUE);
 	}
 

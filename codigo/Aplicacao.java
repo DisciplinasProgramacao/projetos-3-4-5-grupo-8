@@ -34,16 +34,16 @@ public class Aplicacao {
 //			4 - Caminhao
 			switch (tipoVeiculo) {
 			case 1:
-				frota.addVeiculo(new Carro(placa, precoVenda));
+				frota.addVeiculo(new Carro(placa, precoVenda, 1));
 			break;
 			case 2:
-				frota.addVeiculo(new Van(placa, precoVenda));
+				frota.addVeiculo(new Van(placa, precoVenda, 1));
 			break;
 			case 3:
-				frota.addVeiculo(new Furgao(placa, precoVenda));
+				frota.addVeiculo(new Furgao(placa, precoVenda, 1));
 			break;
 			case 4:
-				frota.addVeiculo(new Caminhao(placa, precoVenda));
+				frota.addVeiculo(new Caminhao(placa, precoVenda, 3));
 			break;
 			default:
 				throw new IllegalArgumentException("Valor inesperado: " + tipoVeiculo);
@@ -66,6 +66,7 @@ public class Aplicacao {
             writer.println("IPVA: " + v.calcularIPVA());
             writer.println("IPVA: " + v.calcularSeguro());
             writer.println("Outros custos: " + v.calcularOutrosCustos());
+            writer.println("Custos totais: " + v.calcularCustosTotais());
             for(Rota r : v.rotas) {
             	writer.println(" Rota");
             	writer.println("   Data: " + r.getData());
@@ -95,6 +96,10 @@ public class Aplicacao {
 				System.out.println("(3) Salvar um conjunto de veículos de um arquivo;");
 				System.out.println("(4) Localizar um veiculo na frota");
 				System.out.println("(5) Imprimir um relatório do veículo com seus gastos até o momento");
+				System.out.println("(6) A quilometragem média de todas as rotas da empresa");
+				System.out.println("(7) Os 3 veículos que mais fizeram rotas;");
+				System.out.println("(8) Lista de veículos ordenada decrescentemente por custos gerados");
+				System.out.println("(9) Filtrar rotas por data");
 				System.out.println("(0) sair");
 				System.out.println("Selecione uma opção: ");
 				opcao = in.nextLine();
@@ -112,16 +117,26 @@ public class Aplicacao {
 					
 					switch (tipoVeiculo) {
 					case 1:
-						frota.addVeiculo(new Carro(placa, precoVenda));
+						System.out.println("Escolha o combustível");
+						System.out.println(" 1 - Gasolina");
+						System.out.println(" 2 - Etanol");
+						int tipoCombustivel = Integer.parseInt(in.nextLine());
+						frota.addVeiculo(new Carro(placa, precoVenda, tipoCombustivel));
 					break;
 					case 2:
-						frota.addVeiculo(new Van(placa, precoVenda));
+						System.out.println("Escolha o combustível");
+						System.out.println(" 1 - Gasolina");
+						System.out.println(" 3 - Diesel");
+						tipoCombustivel = Integer.parseInt(in.nextLine());
+						frota.addVeiculo(new Van(placa, precoVenda, tipoCombustivel));
 					break;
 					case 3:
-						frota.addVeiculo(new Furgao(placa, precoVenda));
+						tipoCombustivel = 1;
+						frota.addVeiculo(new Furgao(placa, precoVenda, tipoCombustivel));
 					break;
 					case 4:
-						frota.addVeiculo(new Caminhao(placa, precoVenda));
+						tipoCombustivel = 3;
+						frota.addVeiculo(new Caminhao(placa, precoVenda, 3));
 					break;
 					default:
 						throw new IllegalArgumentException("Valor inesperado: " + tipoVeiculo);
@@ -164,6 +179,31 @@ public class Aplicacao {
 					String placa = in.nextLine();
 					Veiculo veiculo = frota.localizarVeiculo(placa);
 					veiculo.gerarRelatorio();
+					break;
+				}else if(opcao.compareTo("6") == 0) {
+					System.out.println("Quilometragem média de todas as rotas é " + frota.obterKmMedia() + "km");
+					break;
+				}else if(opcao.compareTo("7") == 0) {
+					frota.obterVeiculosComMaisRotas();
+					break;
+				}else if(opcao.compareTo("8") == 0) {
+					frota.obterVeiculosPorCusto();
+					break;
+				}else if(opcao.compareTo("9") == 0) {
+					System.out.println("Digite o dia da rota:");
+					int dia = Integer.parseInt(in.nextLine());
+					System.out.println("Digite o mês da rota:");
+					int mes = Integer.parseInt(in.nextLine());
+					System.out.println("Digite o ano da rota:");
+					int ano = Integer.parseInt(in.nextLine());
+					if(frota.localizarRotasPorData(new Date(ano, mes, dia)) != null) {
+						for(Rota r : frota.localizarRotasPorData(new Date(ano, mes, dia))) {
+							System.out.println(r.toString());
+						}
+					} else {
+						System.out.println("Não existe nenhuma rota nessa data!");
+					}
+					
 					break;
 				}else if(opcao.compareTo("0") == 0) {
 					break;
