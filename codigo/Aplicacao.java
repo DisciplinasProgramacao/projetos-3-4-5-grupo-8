@@ -8,6 +8,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Aplicacao {
+    static FabricaCarro carro = new FabricaCarro();
+    static FabricaVan van = new FabricaVan();
+    static FabricaFurgao furgao = new FabricaFurgao();
+    static FabricaCaminhao caminhao = new FabricaCaminhao();
+    
 	/**
 	 * @return
 	 * @throws IOException
