@@ -1,6 +1,7 @@
 import java.util.Date;
+import java.util.Collection;
 
-public class Rota {
+public class Rota implements Comparable<Rota> {
 	private double distancia;
 	private Date data;
 	private String origem;
@@ -78,6 +79,12 @@ public class Rota {
 	@Override
 	public String toString() {
 		return "Rota [Distancia " + distancia + ", Data " + data + ", Origem " + origem + ", Destino " + destino + "]";
+	}
+
+	@Override
+	public int compareTo(Rota o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

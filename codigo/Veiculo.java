@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Veiculo implements IVeiculo {
+public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	protected String nome;
 	protected String placa;
 	protected double valorDeVenda;
@@ -112,26 +112,24 @@ public abstract class Veiculo implements IVeiculo {
 	 * @return
 	 */
 	public double obterLimitePorData(Date date) {
-		double distanciaPercorridaDia = 0;
-		for(Rota r : this.rotas) {
-			if(r.getData().equals(date)) {
-				distanciaPercorridaDia += r.getDistancia();
-			}
-		}
-		return distanciaPercorridaDia;
+		return this.rotas.stream().filter(r -> r.getData().equals(date)).mapToDouble(r -> r.getDistancia()).sum();
 	}
 	
 	/**
 	 * @return
 	 */
 	public double calcularKmRodado() {
-		double km = 0;
-		for(Rota r : this.rotas) {
-				km += r.getDistancia();
-		}
-		this.kmRodado = km;
-		return km;
+		return this.rotas.stream().mapToDouble(r -> r.getDistancia()).sum();
 	}
+	
+	/**
+	 * @return
+	 */
+	public int quantidadeRotas() {
+		return rotas.size();
+	}
+	
+	
 
 	/**
 	 *
@@ -167,5 +165,10 @@ public abstract class Veiculo implements IVeiculo {
 	 *
 	 */
 	public abstract void encherTanque();
+	
+	public int compareTo(Veiculo o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

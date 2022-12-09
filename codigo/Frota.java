@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.stream.Collectors;
+import java.util.Comparator;
 
-public class Frota {
+public class Frota implements Comparable<Frota>{
 	private ArrayList<Veiculo> veiculos;
 
 	/**
@@ -44,26 +46,19 @@ public class Frota {
 	 * Localiza veiculo presente em uma frota a partir de sua placa
 	 */
 	public Veiculo localizarVeiculo(String placa) {
-		for (Veiculo v : this.veiculos) {
-			if (v.placa.equals(placa)) {
-				return v;
-			}
-		}
-		return null;
+		return this.veiculos.stream().filter(v -> v.getPlaca().equals(placa))
+		.findAny()
+		.orElse(null);
 	}
 
 	/**
 	 * Obtem a quilometragem media de todas as rotas da empresa
 	 */
 	public double obterKmMedia() {
-		double kmMedia = 0;
-		int qtdRotas = 0;
-		for (Veiculo v : this.veiculos) {
-			for (Rota r : v.rotas) {
-				kmMedia += r.getDistancia();
-				qtdRotas++;
-			}
-		}
+		int qtdRotas = this.veiculos.stream().mapToInt(v -> v.quantidadeRotas()).sum();
+		
+		double kmMedia = this.veiculos.stream().mapToDouble(v -> v.getKmRodado()).sum();
+		
 		return kmMedia / qtdRotas;
 	}
 
@@ -71,34 +66,20 @@ public class Frota {
 	 * Obtem os 3 veiculos que mais fizeram rotas
 	 */
 	public void obterVeiculosComMaisRotas() {
-		ArrayList<String> veiculosComMaisRotas = new ArrayList<String>();
-		for (Veiculo v : this.veiculos) {
-			if (v.rotas.size() > 0) {
-				veiculosComMaisRotas.add("Número de Rotas - " + v.rotas.size() + "\n" + "Placa - " + v.placa);
-			}
-
-		}
-		Collections.sort(veiculosComMaisRotas, Collections.reverseOrder());
-		for (int i = 0; i < 3; i++) {
-			System.out.println(veiculosComMaisRotas.get(i));
+		this.veiculos.stream().filter(v -> v.quantidadeRotas() > 0).sorted(Comparator.comparing(Veiculo::quantidadeRotas)).limit(3).forEach((Veiculo v) -> {
+			System.out.println("Número de Rotas - " + v.rotas.size() + "\n" + "Placa - " + v.placa);
 			System.out.println("");
-		}
+		});
 	}
 	
 	/**
 	 * Obtem os veiculos por ordem decrescente de custos totais
 	 */
 	public void obterVeiculosPorCusto() {
-		ArrayList<String> veiculosPorCusto = new ArrayList<String>();
-		for (Veiculo v : this.veiculos) {
-				veiculosPorCusto.add("Custos Totais - R$" + v.calcularCustosTotais() + "\n" + "Placa - " + v.placa);
-
-		}
-		Collections.sort(veiculosPorCusto, Collections.reverseOrder());
-		for (int i = 0; i < 3; i++) {
-			System.out.println(veiculosPorCusto.get(i));
+		this.veiculos.stream().sorted(Comparator.comparing(Veiculo::calcularCustosTotais).reversed()).forEach((Veiculo v) -> {
+			System.out.println("Custos Totais - R$ " + String.format("%.2f", v.calcularCustosTotais()) + "\n" + "Placa - " + v.placa);
 			System.out.println("");
-		}
+		});
 	}
 	
 	/**
@@ -106,18 +87,18 @@ public class Frota {
 	 */
 	public ArrayList<Rota> localizarRotasPorData(Date data) {
 		ArrayList<Rota> rotas = new ArrayList<Rota>();
-		for (Veiculo v : this.veiculos) {
-			for (Rota r : v.rotas) {
-				if(data.compareTo(r.getData()) == 0) {
-					rotas.add(r);
-				}
-			}
-		}
+		this.veiculos.stream().filter(v -> v.quantidadeRotas() > 0).forEach((Veiculo v) -> {
+			v.rotas.stream().filter(r -> data.compareTo(r.getData()) == 0).forEach((Rota r) -> {
+				rotas.add(r);
+			});
+		});
 		
-		if(rotas.size() > 0) {
-			return rotas;
-		}
-		
-		return null;
+		return rotas;
+	}
+
+	@Override
+	public int compareTo(Frota o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

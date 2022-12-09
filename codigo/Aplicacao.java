@@ -179,16 +179,12 @@ public class Aplicacao {
 					String placa = in.nextLine();
 					Veiculo veiculo = frota.localizarVeiculo(placa);
 					veiculo.gerarRelatorio();
-					break;
 				}else if(opcao.compareTo("6") == 0) {
 					System.out.println("Quilometragem média de todas as rotas é " + frota.obterKmMedia() + "km");
-					break;
 				}else if(opcao.compareTo("7") == 0) {
 					frota.obterVeiculosComMaisRotas();
-					break;
 				}else if(opcao.compareTo("8") == 0) {
 					frota.obterVeiculosPorCusto();
-					break;
 				}else if(opcao.compareTo("9") == 0) {
 					System.out.println("Digite o dia da rota:");
 					int dia = Integer.parseInt(in.nextLine());
@@ -203,8 +199,6 @@ public class Aplicacao {
 					} else {
 						System.out.println("Não existe nenhuma rota nessa data!");
 					}
-					
-					break;
 				}else if(opcao.compareTo("0") == 0) {
 					break;
 				} 
