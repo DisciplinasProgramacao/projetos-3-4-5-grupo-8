@@ -1,0 +1,15 @@
+carro
+carro
+caminhao
+carro
+furgao
+van
+van
+carro
+caminhao
+van
+furgao
+caminhao
+van
+furgao
+caminhao

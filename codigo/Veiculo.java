@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
+public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializable {
 	protected String nome;
 	protected String placa;
 	protected double valorDeVenda;

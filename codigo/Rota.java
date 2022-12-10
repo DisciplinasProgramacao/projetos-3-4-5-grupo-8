@@ -1,7 +1,8 @@
 import java.util.Date;
+import java.io.Serializable;
 import java.util.Collection;
 
-public class Rota implements Comparable<Rota> {
+public class Rota implements Comparable<Rota>, Serializable {
 	private double distancia;
 	private Date data;
 	private String origem;

@@ -1,4 +1,6 @@
-public abstract class Combustivel {
+import java.io.Serializable;
+
+public abstract class Combustivel implements Serializable {
 	private double valorMedioLitro;
 	private double consumo;
 	
