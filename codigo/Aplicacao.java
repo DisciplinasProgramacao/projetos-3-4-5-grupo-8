@@ -1,17 +1,23 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Aplicacao {
     static FabricaCarro carro = new FabricaCarro();
     static FabricaVan van = new FabricaVan();
     static FabricaFurgao furgao = new FabricaFurgao();
     static FabricaCaminhao caminhao = new FabricaCaminhao();
+    static String arqDados= "tudo.bin";
     
 	/**
 	 * @return
@@ -95,12 +101,57 @@ public class Aplicacao {
 	}
 	
 	/**
+     * Carrega dados do arquivo de clientes serialiado. Tratamento de diversas exceções
+     * @param teclado Scanner de teclado para pausa
+     * @return Um TreeSet com os clientes e seus pedidos
+     */
+    public static Set<Frota> carregarDados() {
+        FileInputStream dados;
+        TreeSet<Frota> todos = new TreeSet<>();   
+
+        try {
+            dados = new FileInputStream(arqDados);
+            ObjectInputStream obj = new ObjectInputStream(dados);
+            while(dados.available()!=0 ){
+                Frota novo = (Frota)obj.readObject();
+                todos.add(novo);
+            }
+            obj.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado.");
+            System.out.println("Clientes e pedidos em branco.");
+            System.out.print("Nome do arquivo de dados: ");
+        }catch(IOException ex){
+            System.out.println("Problema no uso do arquivo.");
+            System.out.println("Favor reiniciar o sistema.");
+        }catch(ClassNotFoundException cex){
+            System.out.println("Classe não encontrada: avise ao suporte.");
+            System.out.println("Clientes e pedidos em branco.");
+            todos = new TreeSet<>();
+        }
+       
+        return todos;
+    }
+	
+	/**
 	 * @param args
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
 		try {
-		 Frota frota = lerArquivo();
+		 Frota frota = new Frota();
+		 
+		 //Adiciona os dados lidos do arquivo binario na frota
+		 for (Frota f : carregarDados()) {
+					for(Veiculo v : f.getVeiculos()){
+						frota.addVeiculo(v);
+					}
+		 }
+		 
+		//Adiciona os dados lidos do arquivo txt na frota
+		for(Veiculo v : lerArquivo().getVeiculos()){
+			frota.addVeiculo(v);
+		}
 		 
 		 Scanner in = new Scanner( System.in );
 	        String opcao = "-1";
