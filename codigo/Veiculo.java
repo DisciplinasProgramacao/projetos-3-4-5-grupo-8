@@ -17,6 +17,7 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @param valorDeVenda
 	 */
 	public Veiculo(String placa, double valorDeVenda, int combustivel) {
+		try {
 		this.nome = "";
 		this.placa = placa;
 		this.valorDeVenda = valorDeVenda;
@@ -36,6 +37,9 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 			throw new IllegalArgumentException("Valor inesperado: " + combustivel);
 		}
 		manutencaoNaoProgramada = new ArrayList<Double>();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -49,7 +53,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @param kmRodado
 	 */
 	public void setKmRodado(double kmRodado) {
+		try {
 		this.kmRodado = kmRodado;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -63,7 +71,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @param nome
 	 */
 	public void setNome(String nome) {
+		try {
 		this.nome = nome;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -77,7 +89,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @param rotas
 	 */
 	public void setRotas(ArrayList<Rota> rotas) {
+		try {
 		this.rotas = rotas;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -91,7 +107,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @param placa
 	 */
 	public void setPlaca(String placa) {
+		try {
 		this.placa = placa;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -105,7 +125,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @param valorDeVenda
 	 */
 	public void setValorDeVenda(double valorDeVenda) {
+		try {
 		this.valorDeVenda = valorDeVenda;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
@@ -113,21 +137,39 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo>, Serializ
 	 * @return
 	 */
 	public double obterLimitePorData(Date date) {
-		return this.rotas.stream().filter(r -> r.getData().equals(date)).mapToDouble(r -> r.getDistancia()).sum();
+		double limite = 0;
+		try {
+			limite = this.rotas.stream().filter(r -> r.getData().equals(date)).mapToDouble(r -> r.getDistancia()).sum();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return limite;
 	}
 	
 	/**
 	 * @return
 	 */
 	public double calcularKmRodado() {
-		return this.rotas.stream().mapToDouble(r -> r.getDistancia()).sum();
+		double kmRodado = 0;
+		try {
+			kmRodado = this.rotas.stream().mapToDouble(r -> r.getDistancia()).sum();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return kmRodado;
 	}
 	
 	/**
 	 * @return
 	 */
 	public int quantidadeRotas() {
-		return rotas.size();
+		int quantidade = 0;
+		try {
+			quantidade = rotas.size();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return quantidade;
 	}
 	
 	

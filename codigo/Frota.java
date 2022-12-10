@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -12,14 +13,22 @@ public class Frota implements Comparable<Frota>, Serializable {
 	 * @param veiculos
 	 */
 	public Frota(ArrayList<Veiculo> veiculos) {
+		try {
 		this.veiculos = veiculos;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
 	 * 
 	 */
 	public Frota() {
+		try {
 		this.veiculos = new ArrayList<Veiculo>();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -33,14 +42,22 @@ public class Frota implements Comparable<Frota>, Serializable {
 	 * @param veiculos
 	 */
 	public void setVeiculos(ArrayList<Veiculo> veiculos) {
+		try {
 		this.veiculos = veiculos;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
 	 * Adiciona veiculo a uma frota
 	 */
 	public void addVeiculo(Veiculo veiculo) {
-		this.veiculos.add(veiculo);
+		try {
+			this.veiculos.add(veiculo);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -67,20 +84,28 @@ public class Frota implements Comparable<Frota>, Serializable {
 	 * Obtem os 3 veiculos que mais fizeram rotas
 	 */
 	public void obterVeiculosComMaisRotas() {
+		try {
 		this.veiculos.stream().filter(v -> v.quantidadeRotas() > 0).sorted(Comparator.comparing(Veiculo::quantidadeRotas)).limit(3).forEach((Veiculo v) -> {
-			System.out.println("Número de Rotas - " + v.rotas.size() + "\n" + "Placa - " + v.placa);
+			System.out.println("Nï¿½mero de Rotas - " + v.rotas.size() + "\n" + "Placa - " + v.placa);
 			System.out.println("");
 		});
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Obtem os veiculos por ordem decrescente de custos totais
 	 */
 	public void obterVeiculosPorCusto() {
+		try {
 		this.veiculos.stream().sorted(Comparator.comparing(Veiculo::calcularCustosTotais).reversed()).forEach((Veiculo v) -> {
 			System.out.println("Custos Totais - R$ " + String.format("%.2f", v.calcularCustosTotais()) + "\n" + "Placa - " + v.placa);
 			System.out.println("");
 		});
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**

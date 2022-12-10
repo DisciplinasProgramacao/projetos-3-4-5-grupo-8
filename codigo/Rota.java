@@ -15,10 +15,14 @@ public class Rota implements Comparable<Rota>, Serializable {
 	 * @param distancia
 	 */
 	public Rota(Date data, String origem , String destino, double distancia) {
+		try {
 		this.distancia = distancia;
 		this.data = data;
 		this.origem = origem;
 		this.destino = destino;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -32,7 +36,11 @@ public class Rota implements Comparable<Rota>, Serializable {
 	 * fixa distancia de uma rota
 	 */
 	public void setDistancia(double distancia) {
+		try {
 		this.distancia = distancia;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -46,7 +54,11 @@ public class Rota implements Comparable<Rota>, Serializable {
 	 * fixa data de uma rota
 	 */
 	public void setData(Date data) {
+		try {
 		this.data = data;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -60,7 +72,11 @@ public class Rota implements Comparable<Rota>, Serializable {
 	 * fixa origem de uma rota
 	 */
 	public void setOrigem(String origem) {
+		try {
 		this.origem = origem;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -74,7 +90,11 @@ public class Rota implements Comparable<Rota>, Serializable {
 	 * fixa destino de uma rota
 	 */
 	public void setDestino(String destino) {
+		try {
 		this.destino = destino;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
