@@ -16,6 +16,7 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @param valorDeVenda
 	 */
 	public Veiculo(String placa, double valorDeVenda, int combustivel) {
+		try {
 		this.nome = "";
 		this.placa = placa;
 		this.valorDeVenda = valorDeVenda;
@@ -35,6 +36,9 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 			throw new IllegalArgumentException("Valor inesperado: " + combustivel);
 		}
 		manutencaoNaoProgramada = new ArrayList<Double>();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -48,7 +52,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @param kmRodado
 	 */
 	public void setKmRodado(double kmRodado) {
+		try {
 		this.kmRodado = kmRodado;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -62,7 +70,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @param nome
 	 */
 	public void setNome(String nome) {
+		try {
 		this.nome = nome;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -76,7 +88,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @param rotas
 	 */
 	public void setRotas(ArrayList<Rota> rotas) {
+		try {
 		this.rotas = rotas;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -90,7 +106,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @param placa
 	 */
 	public void setPlaca(String placa) {
+		try {
 		this.placa = placa;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -104,7 +124,11 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @param valorDeVenda
 	 */
 	public void setValorDeVenda(double valorDeVenda) {
+		try {
 		this.valorDeVenda = valorDeVenda;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
@@ -112,21 +136,33 @@ public abstract class Veiculo implements IVeiculo, Comparable<Veiculo> {
 	 * @return
 	 */
 	public double obterLimitePorData(Date date) {
+		try {
 		return this.rotas.stream().filter(r -> r.getData().equals(date)).mapToDouble(r -> r.getDistancia()).sum();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
 	 * @return
 	 */
 	public double calcularKmRodado() {
+		try {
 		return this.rotas.stream().mapToDouble(r -> r.getDistancia()).sum();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
 	 * @return
 	 */
 	public int quantidadeRotas() {
+		try {
 		return rotas.size();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	

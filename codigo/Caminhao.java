@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class Caminhao extends Veiculo {
 	public static final double TAXA_SEGURO = 0.02;
@@ -11,7 +12,7 @@ public class Caminhao extends Veiculo {
 	 */
 	public Caminhao(String placa, double valorDeVenda, int combustivel) {
 		super(placa, valorDeVenda, combustivel);
-		this.nome = "Caminhão";
+		this.nome = "Caminhï¿½o";
 		this.tanque = CAPACIDADE_TANQUE;
 	}
 	
@@ -19,29 +20,33 @@ public class Caminhao extends Veiculo {
 	 * Adiciona Rota a um veiculo
 	 */
 	@Override
-	public void addRota(Rota rota) {
-		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
-		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
-			this.rotas.add(rota);
-			this.setKmRodado(this.kmRodado + rota.getDistancia());
-			this.tanque -= rota.getDistancia() / this.combustivel.getConsumo();
-		} else {
-			System.out.println("Tanque abastecido por não ter combustivel suficiente para a rota atual.");
-			this.encherTanque();
-			this.rotas.add(rota);
-			this.setKmRodado(this.kmRodado + rota.getDistancia());
+	public void addRota(Rota rota)  {
+		try {
+			double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
+			if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
+				this.rotas.add(rota);
+				this.setKmRodado(this.kmRodado + rota.getDistancia());
+				this.tanque -= rota.getDistancia() / this.combustivel.getConsumo();
+			} else {
+				System.out.println("Tanque abastecido por nï¿½o ter combustivel suficiente para a rota atual.");
+				this.encherTanque();
+				this.rotas.add(rota);
+				this.setKmRodado(this.kmRodado + rota.getDistancia());
+			}
+			
+			// cria um loop para imprimir 7 valores aleatï¿½rios entre 1 e 20
+			for (int i = 0; i < 7; i++) {
+		        int numRandom = (int)(Math.random() * 20 ) + 1;
+		     // se os valores gerados forem 5, 7 ou 16 gera uma manutenï¿½ï¿½o nï¿½o programada
+		        if(numRandom == 5 || numRandom == 7 || numRandom == 16) {
+		        	System.out.println("Apareceu uma manutenï¿½ï¿½o nï¿½o programada no valor de R$" + numRandom * 10.00);
+		        	this.manutencaoNaoProgramada.add(numRandom * 10.00);
+		        }
+	
+		     }
+		}catch(IOException ex){
+			ex.printStackTrace();
 		}
-		
-		// cria um loop para imprimir 7 valores aleatórios entre 1 e 20
-		for (int i = 0; i < 7; i++) {
-	        int numRandom = (int)(Math.random() * 20 ) + 1;
-	     // se os valores gerados forem 5, 7 ou 16 gera uma manutenção não programada
-	        if(numRandom == 5 || numRandom == 7 || numRandom == 16) {
-	        	System.out.println("Apareceu uma manutenção não programada no valor de R$" + numRandom * 10.00);
-	        	this.manutencaoNaoProgramada.add(numRandom * 10.00);
-	        }
-
-	     }
 	}
 
 	/**
@@ -49,18 +54,18 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public double calcularOutrosCustos() {
-		double manutencao = 0;
-		double vistoria = 0;
-		if(this.kmRodado >= 20000) {
-			int calc = (int) (this.kmRodado / 20000);
-			manutencao = calc * 1000;
-		}
-		if(this.kmRodado >= 30000) {
-			int calc = (int) (this.kmRodado / 30000);
-			vistoria = calc * 1000;
-		} 
-		double outrosCustos = manutencao + vistoria;
-		return outrosCustos;
+			double manutencao = 0;
+			double vistoria = 0;
+			if(this.kmRodado >= 20000) {
+				int calc = (int) (this.kmRodado / 20000);
+				manutencao = calc * 1000;
+			}
+			if(this.kmRodado >= 30000) {
+				int calc = (int) (this.kmRodado / 30000);
+				vistoria = calc * 1000;
+			} 
+			double outrosCustos = manutencao + vistoria;
+			return outrosCustos;
 	}
 
 	/**
@@ -68,8 +73,12 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public double calcularLimiteDiario() {
-		double limiteDiario = this.tanque * this.combustivel.getConsumo();
-		return limiteDiario;
+		try {
+			double limiteDiario = this.tanque * this.combustivel.getConsumo();
+			return limiteDiario;
+		}catch(IOException ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -77,7 +86,7 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public double calcularIPVA() {
-		return this.valorDeVenda * Caminhao.TAXA_IPVA;
+			return this.valorDeVenda * Caminhao.TAXA_IPVA;
 	}
 
 	/**
@@ -85,7 +94,7 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public double calcularSeguro() {
-		return this.valorDeVenda * Caminhao.TAXA_SEGURO + Caminhao.SEGURO_ADICIONAL;
+			return this.valorDeVenda * Caminhao.TAXA_SEGURO + Caminhao.SEGURO_ADICIONAL;
 	}
 	
 	/**
@@ -93,11 +102,15 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
-		System.out.println("Tipo veículo: Caminhão");
-		System.out.println("Placa: " + this.placa);
-		System.out.println("IPVA: " + this.calcularIPVA());
-		System.out.println("IPVA: " + this.calcularSeguro());
-		System.out.println("Outros custos: " + this.calcularOutrosCustos());
+		try {
+			System.out.println("Tipo veï¿½culo: Caminhï¿½o");
+			System.out.println("Placa: " + this.placa);
+			System.out.println("IPVA: " + this.calcularIPVA());
+			System.out.println("IPVA: " + this.calcularSeguro());
+			System.out.println("Outros custos: " + this.calcularOutrosCustos());
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
@@ -105,12 +118,12 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public double calcularCustosTotais() {
-		double custosTotais = 0;
-		custosTotais = this.calcularIPVA() + this.calcularSeguro() + this.calcularOutrosCustos();
-		for(double m: this.manutencaoNaoProgramada) {
-			custosTotais += m;
-		}
-		return custosTotais;
+			double custosTotais = 0;
+			custosTotais = this.calcularIPVA() + this.calcularSeguro() + this.calcularOutrosCustos();
+			for(double m: this.manutencaoNaoProgramada) {
+				custosTotais += m;
+			}
+			return custosTotais;
 	}
 	
 	/**
@@ -118,6 +131,10 @@ public class Caminhao extends Veiculo {
 	 */
 	@Override
 	public void encherTanque() {
-		this.tanque = CAPACIDADE_TANQUE;
+		try {
+			this.tanque = CAPACIDADE_TANQUE;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 }

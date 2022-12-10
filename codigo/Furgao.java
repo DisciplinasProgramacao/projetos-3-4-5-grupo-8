@@ -12,7 +12,7 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	public Furgao(String placa, double valorDeVenda, int combustivel) {
 		super(placa, valorDeVenda, combustivel);
-		this.nome = "Furgão";
+		this.nome = "Furgï¿½o";
 		this.tanque = CAPACIDADE_TANQUE;
 	}
 	
@@ -21,28 +21,32 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	@Override
 	public void addRota(Rota rota) {
+		try {
 		double distanciaLimiteMaisAdicionada  = this.obterLimitePorData(rota.getData()) + rota.getDistancia();
 		if(distanciaLimiteMaisAdicionada <= this.calcularLimiteDiario()) {
 			this.rotas.add(rota);
 			this.setKmRodado(this.kmRodado + rota.getDistancia());
 			this.tanque -= rota.getDistancia() / this.combustivel.getConsumo();
 		} else {
-			System.out.println("Tanque abastecido por não ter combustivel suficiente para a rota atual.");
+			System.out.println("Tanque abastecido por nï¿½o ter combustivel suficiente para a rota atual.");
 			this.encherTanque();
 			this.rotas.add(rota);
 			this.setKmRodado(this.kmRodado + rota.getDistancia());
 		}
 		
-		// cria um loop para imprimir 7 valores aleatórios entre 1 e 20
+		// cria um loop para imprimir 7 valores aleatï¿½rios entre 1 e 20
 		for (int i = 0; i < 7; i++) {
 	        int numRandom = (int)(Math.random() * 20 ) + 1;
-	     // se os valores gerados forem 5, 7 ou 16 gera uma manutenção não programada
+	     // se os valores gerados forem 5, 7 ou 16 gera uma manutenï¿½ï¿½o nï¿½o programada
 	        if(numRandom == 5 || numRandom == 7 || numRandom == 16) {
-	        	System.out.println("Apareceu uma manutenção não programada no valor de R$" + numRandom * 10.00);
+	        	System.out.println("Apareceu uma manutenï¿½ï¿½o nï¿½o programada no valor de R$" + numRandom * 10.00);
 	        	this.manutencaoNaoProgramada.add(numRandom * 10.00);
 	        }
 
 	     }
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -103,11 +107,15 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	@Override
 	public void gerarRelatorio() {
+		try {
 		System.out.println("Tipo veï¿½culo: Furgï¿½o");
 		System.out.println("Placa: " + this.placa);
 		System.out.println("IPVA: " + this.calcularIPVA());
 		System.out.println("IPVA: " + this.calcularSeguro());
 		System.out.println("Outros custos: " + this.calcularOutrosCustos());
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
@@ -128,6 +136,10 @@ public class Furgao extends Veiculo implements IVeiculo {
 	 */
 	@Override
 	public void encherTanque() {
+		try {
 		this.tanque = CAPACIDADE_TANQUE;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 }
